@@ -281,7 +281,7 @@ void Merlin_Knight(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, uint8_t
   // Reihenfolge: 7 - 1&8 - 6 - 2&9 - 5 - 3&10 - 4
   // im Programm: 6 - 0&7 - 5 - 1&8 - 4 - 2&9 - 3
 
-  allesAus()
+  allesAus();
 
   uint16_t j;
 
@@ -391,7 +391,7 @@ void Merlin_Knight_spur(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, ui
 
 void Merlin_Kreis_CW(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, uint8_t blauAnteil, uint8_t nochmal) {
 
-  allesAus()
+  allesAus();
 
   uint16_t j;
 
@@ -425,7 +425,7 @@ void Merlin_Kreis_CW(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, uint8
 
 void Merlin_Kreis_CW_Spur(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, uint8_t blauAnteil, uint8_t nochmal) {
 
-  allesAus()
+  allesAus();
 
   uint16_t j;
 
@@ -467,7 +467,7 @@ void Merlin_Kreis_CW_Spur(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, 
 
 void Merlin_Kreis_CCW(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, uint8_t blauAnteil, uint8_t nochmal) {
 
-  allesAus()
+  allesAus();
 
   uint16_t j;
 
