@@ -120,6 +120,18 @@ void loop() {
   Merlin_Knight_spur(120,100,100,0,8);
   delay(pause);
 
+  Serial.println("Merlin Kreis CW");
+  Merlin_Kreis_CW(100,0,50,100,12);
+  delay(pause/2);
+
+  Serial.println("Merlin Kreis CW Spur");
+  Merlin_Kreis_CW(80,0,60,120,12);
+  delay(pause);
+
+  Serial.println("Merlin Kreis CCW");
+  Merlin_Kreis_CCW(300,50,00,100,21);
+  delay(pause);
+
   Serial.println("Merlin Fill");
   Merlin_L2R_Fill(10,0,25,0);
   delay(pause);
@@ -170,6 +182,20 @@ void randomColors(uint8_t wait) {
     strip.show();
     delay(wait);
   }
+}
+
+void allesAus(){
+  strip.setPixelColor(0, 0,0,0);
+  strip.setPixelColor(1, 0,0,0);
+  strip.setPixelColor(2, 0,0,0);
+  strip.setPixelColor(3, 0,0,0);
+  strip.setPixelColor(4, 0,0,0);
+  strip.setPixelColor(5, 0,0,0);
+  strip.setPixelColor(6, 0,0,0);
+  strip.setPixelColor(7, 0,0,0);
+  strip.setPixelColor(8, 0,0,0);
+  strip.setPixelColor(9, 0,0,0);
+  strip.show();
 }
 
 void Merlin_L2R_Fill(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, uint8_t blauAnteil) {
@@ -255,17 +281,7 @@ void Merlin_Knight(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, uint8_t
   // Reihenfolge: 7 - 1&8 - 6 - 2&9 - 5 - 3&10 - 4
   // im Programm: 6 - 0&7 - 5 - 1&8 - 4 - 2&9 - 3
 
-  strip.setPixelColor(0, 0,0,0);
-  strip.setPixelColor(1, 0,0,0);
-  strip.setPixelColor(2, 0,0,0);
-  strip.setPixelColor(3, 0,0,0);
-  strip.setPixelColor(4, 0,0,0);
-  strip.setPixelColor(5, 0,0,0);
-  strip.setPixelColor(6, 0,0,0);
-  strip.setPixelColor(7, 0,0,0);
-  strip.setPixelColor(8, 0,0,0);
-  strip.setPixelColor(9, 0,0,0);
-  strip.show();
+  allesAus()
 
   uint16_t j;
 
@@ -373,6 +389,115 @@ void Merlin_Knight_spur(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, ui
   strip.setPixelColor(4,0,0,0);
 }
 
+void Merlin_Kreis_CW(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, uint8_t blauAnteil, uint8_t nochmal) {
+
+  allesAus()
+
+  uint16_t j;
+
+  for(j=0; j<nochmal; j++) {
+	  strip.setPixelColor(7,0,0,0);
+	  strip.setPixelColor(8,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(8,0,0,0);
+	  strip.setPixelColor(9,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(9,0,0,0);
+	  strip.setPixelColor(3,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(3,0,0,0);
+	  strip.setPixelColor(2,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(2,0,0,0);
+	  strip.setPixelColor(1,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(1,0,0,0);
+	  strip.setPixelColor(0,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(0,0,0,0);
+	  strip.setPixelColor(6,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(6,0,0,0);
+	  strip.setPixelColor(7,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+  }
+}
+
+void Merlin_Kreis_CW_Spur(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, uint8_t blauAnteil, uint8_t nochmal) {
+
+  allesAus()
+
+  uint16_t j;
+
+  for(j=0; j<nochmal; j++) {
+	  strip.setPixelColor(6,0,0,0);
+	  strip.setPixelColor(7,rotAnteil/4,gruenAnteil/4,blauAnteil/4);
+	  strip.setPixelColor(8,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(7,0,0,0);
+	  strip.setPixelColor(8,rotAnteil/4,gruenAnteil/4,blauAnteil/4);
+	  strip.setPixelColor(9,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(8,0,0,0);
+	  strip.setPixelColor(9,rotAnteil/4,gruenAnteil/4,blauAnteil/4);
+	  strip.setPixelColor(3,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(9,0,0,0);
+	  strip.setPixelColor(3,rotAnteil/4,gruenAnteil/4,blauAnteil/4);
+	  strip.setPixelColor(2,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(3,0,0,0);
+	  strip.setPixelColor(2,rotAnteil/4,gruenAnteil/4,blauAnteil/4);
+	  strip.setPixelColor(1,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(2,0,0,0);
+	  strip.setPixelColor(1,rotAnteil/4,gruenAnteil/4,blauAnteil/4);
+	  strip.setPixelColor(0,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(1,0,0,0);
+	  strip.setPixelColor(0,rotAnteil/4,gruenAnteil/4,blauAnteil/4);
+	  strip.setPixelColor(6,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(0,0,0,0);
+	  strip.setPixelColor(6,rotAnteil/4,gruenAnteil/4,blauAnteil/4);
+	  strip.setPixelColor(7,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+  }
+}
+
+void Merlin_Kreis_CCW(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, uint8_t blauAnteil, uint8_t nochmal) {
+
+  allesAus()
+
+  uint16_t j;
+
+  for(j=0; j<nochmal; j++) {
+	  strip.setPixelColor(9,0,0,0);
+	  strip.setPixelColor(8,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(8,0,0,0);
+	  strip.setPixelColor(7,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(7,0,0,0);
+	  strip.setPixelColor(6,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(6,0,0,0);
+	  strip.setPixelColor(0,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(0,0,0,0);
+	  strip.setPixelColor(1,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(1,0,0,0);
+	  strip.setPixelColor(2,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(2,0,0,0);
+	  strip.setPixelColor(3,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+	  strip.setPixelColor(3,0,0,0);
+	  strip.setPixelColor(9,rotAnteil,gruenAnteil,blauAnteil);
+	  strip.show();
+  }
+}
 
 //Theatre-style crawling lights.
 void theaterChase(uint32_t c, uint8_t wait) {
