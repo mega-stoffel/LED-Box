@@ -108,7 +108,7 @@ void loop() {
   delay(pause);
 */
 
-  Serial.println("Merlin Fill");
+/*  Serial.println("Merlin Fill");
   Merlin_L2R_Fill(500,127,0,0);
   delay(pause);
 
@@ -147,6 +147,10 @@ void loop() {
 
   Serial.println("Merlin Fill Marquee");
   Merlin_L2R_Marquee(500,0,127,0);
+  delay(pause);
+*/
+  Serial.println("Merlin Glitzer Entwurf");
+  Merlin_Glitzer(100,250);
   delay(pause);
 
 }
@@ -227,6 +231,33 @@ void Merlin_L2R_Fill(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, uint8
   strip.setPixelColor(3, rotAnteil,gruenAnteil,blauAnteil);
   strip.show();
   delay(wait);
+}
+
+void Merlin_Glitzer(uint8_t wait, uint8_t repeat) {
+
+  allesAus();
+  uint16_t i, j;
+  short farbe_r, farbe_g, farbe_b, anoderaus;
+
+  for(j=0; j<= repeat; j++) {
+    //Serial.println("Merlin glitzer, J");
+    for(i=0; i<strip.numPixels(); i++) {
+      //Serial.println("Merlin Glitzer I");
+  	  anoderaus=random(0,4);
+      //Serial.println("anoderaus: " + random(0,4));
+      if(anoderaus > 2) {
+  	    farbe_r=random(0,127);
+  	    farbe_g=random(0,127);
+  	    farbe_b=random(0,127);
+        strip.setPixelColor(i, strip.Color(farbe_r, farbe_g, farbe_b));
+      }
+      else{
+        strip.setPixelColor(i, 0,0,0);
+      }
+    }
+    strip.show();
+    delay(wait);
+  }
 }
 
 void Merlin_L2R_Marquee(uint8_t wait, uint8_t rotAnteil, uint8_t gruenAnteil, uint8_t blauAnteil) {
