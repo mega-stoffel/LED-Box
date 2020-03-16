@@ -150,7 +150,7 @@ void loop() {
   delay(pause);
 */
   Serial.println("Merlin Glitzer Entwurf");
-  Merlin_Glitzer(100,250);
+  Merlin_Glitzer(300,20);
   delay(pause);
 
 }
@@ -239,21 +239,83 @@ void Merlin_Glitzer(uint8_t wait, uint8_t repeat) {
   uint16_t i, j;
   short farbe_r, farbe_g, farbe_b, anoderaus;
 
-  for(j=0; j<= repeat; j++) {
+  int meineLED[][4] = {
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0}
+  };
+  int andersrum[]={0,0,0};
+  int Inkrement_R;
+  int Inkrement_G;
+  int Inkrement_B;
+
+  for(j=0; j <= repeat; j++)
+  {
     //Serial.println("Merlin glitzer, J");
-    for(i=0; i<strip.numPixels(); i++) {
+    for(i=0; i<strip.numPixels(); i++)
+    {
       //Serial.println("Merlin Glitzer I");
   	  anoderaus=random(0,4);
       //Serial.println("anoderaus: " + random(0,4));
-      if(anoderaus > 2) {
-  	    farbe_r=random(0,127);
-  	    farbe_g=random(0,127);
-  	    farbe_b=random(0,127);
-        strip.setPixelColor(i, strip.Color(farbe_r, farbe_g, farbe_b));
-      }
-      else{
+      //if(anoderaus > 2)
+      //{
+        if((meineLED[i][0] == 0) && (meineLED[i][1] == 0) && (meineLED[i][2] == 0))
+        {
+          farbe_r=random(0,127);
+    	    farbe_g=random(0,127);
+    	    farbe_b=random(0,127);
+          meineLED[i][0]=farbe_r;
+          meineLED[i][1]=farbe_g;
+          meineLED[i][2]=farbe_b;
+        }
+        else
+        {
+          if ((meineLED[i][0] <= 180) && (andersrum[0] == 0))
+          {
+            Inkrement_R = meineLED[i][0] / 10;
+            meineLED[i][0] = meineLED[i][0]+Inkrement_R;
+          }
+          else
+          {
+            meineLED[i][0] = meineLED[i][0]-8;
+            andersrum[0] = 1;
+          }
+          
+          if ((meineLED[i][1] <= 180) && (andersrum[1] == 0))
+          {
+            Inkrement_G = meineLED[i][1] / 10;
+            meineLED[i][1] = meineLED[i][1]+Inkrement_G;
+          }
+          else
+          {
+            meineLED[i][1] = meineLED[i][0]-8;
+            andersrum[1] = 1;
+          }
+          if ((meineLED[i][2] <= 180) && (andersrum[2] == 0))
+          {
+            Inkrement_B = meineLED[i][2] / 10;
+            meineLED[i][2]+=Inkrement_B;
+          }
+          else
+          {
+            meineLED[i][2]-=8;
+            andersrum[2] = 1;
+          }
+          
+        }
+        strip.setPixelColor(i, strip.Color(meineLED[i][0], meineLED[i][1], meineLED[i][2]));
+      /*}
+      else
+      {
         strip.setPixelColor(i, 0,0,0);
-      }
+      }*/
     }
     strip.show();
     delay(wait);
